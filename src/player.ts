@@ -6,8 +6,9 @@ export class Player extends Entity {
 
     constructor(x: number, y: number) {
         super(x, y);
-        this.sprite._tintRGB = 200;
+        this.color = 0x00ff00;
         this.magnitude = 5;
+        this.resetMask();
     }
 
     update(): void {

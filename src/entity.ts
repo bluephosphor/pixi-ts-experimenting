@@ -1,25 +1,41 @@
-import { Sprite } from 'pixi.js';
-import { Game } from './main';
+import { Graphics, Sprite } from 'pixi.js';
+import { Game } from '.';
 
 export const Entities = new Set<Entity>();
 
 export class Entity {
     x: number;
     y: number;
-    sprite: Sprite;
+    width: number;
+    height: number;
+    sprite: Sprite | undefined;
+    mask: Graphics;
+    color: number;
 
     constructor(x: number, y: number) {
         this.x = x;
         this.y = y;
-        this.sprite = Sprite.from('block.png');
+        this.width = 32;
+        this.height = 32;
+        this.sprite = undefined;
+        this.color = 0xffffff;
+        
+        this.mask = new Graphics();
+        this.resetMask();
+
         Entities.add(this);
-        Game.stage.addChild(this.sprite);
+        Game.stage.addChild(this.mask);
     }
 
-    draw() {
-        this.sprite.x = this.x;
-        this.sprite.y = this.y;
+    resetMask(): void {
+        this.mask.beginFill(this.color);
+        this.mask.drawRect(this.x, this.y, this.width, this.height);
     }
 
-    update() {}
+    update(): void {}
+
+    draw(): void{
+        this.mask.x = this.x;
+        this.mask.y = this.y;
+    }
 }
