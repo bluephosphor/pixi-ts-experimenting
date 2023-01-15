@@ -1,19 +1,18 @@
 import './style.css'
 import { Application } from 'pixi.js';
-import Player from './player';
-import Entity from './entity';
-
+import { Player } from './player';
+import { Entities, Entity } from './entity';
+import { Controller } from './controller';
 
 export const Game = new Application({ width: 480, height: 480 });
 document.body.appendChild(Game.view);
 
-const entities = new Set<Entity>();
-
-entities.add(new Player(60,60));
-entities.add(new Entity(200,160));
+Controller.init();
+const player = new Player(64,64);
+const entity = new Entity(128,200);
 
 Game.ticker.add((delta) => {
-    entities.forEach(e => {
+    Entities.forEach(e => {
         e.update();
         e.draw();
     })
