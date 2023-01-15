@@ -1,16 +1,8 @@
-import { Sprite } from "pixi.js";
-import { app } from "./main";
+import Entity from "./entity";
 
-export default class Player {
-    sprite: Sprite;
-    
-    constructor(){
-        this.sprite = Sprite.from('player.png');
-        this.sprite.x = app.renderer.width / 2;
-        this.sprite.y = app.renderer.height / 2;
-    }
-
-    update(){
-        this.sprite.x += 1;
+export default class Player extends Entity {
+    constructor(x: number, y: number) {
+        super(x, y);
+        this.sprite._tintRGB = 200;
     }
 }
