@@ -1,9 +1,9 @@
-import { Input } from "./controller";
-import { Entity } from "./entity";
+import { Input } from './controller';
+import { Entity } from './entity';
 
 export class Player extends Entity {
     magnitude: number;
-    
+
     constructor(x: number, y: number) {
         super(x, y);
         this.sprite._tintRGB = 200;
