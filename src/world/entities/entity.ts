@@ -1,5 +1,5 @@
 import { Graphics, Sprite } from 'pixi.js';
-import { Game } from '.';
+import { Game } from '../..';
 
 export const Entities = new Set<Entity>();
 
@@ -28,6 +28,7 @@ export class Entity {
     }
 
     resetMask(): void {
+        this.mask.clear();
         this.mask.beginFill(this.color);
         this.mask.drawRect(this.x, this.y, this.width, this.height);
     }

@@ -1,4 +1,4 @@
-import { Input } from './controller';
+import { Input } from '../../meta/controller';
 import { Entity } from './entity';
 
 export class Player extends Entity {
