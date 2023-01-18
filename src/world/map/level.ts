@@ -1,11 +1,6 @@
+import { randomInt } from "mathjs";
 import { WIDTH, HEIGHT, CELL_SIZE } from "../../config";
-import { Cell } from "./cell";
-
-export enum CellType {
-    FLOOR,
-    WALL,
-    WATER
-}
+import { Cell, CellType } from "./cell";
 
 export class Level {
     
@@ -18,16 +13,22 @@ export class Level {
         this.rows = Math.floor(HEIGHT / CELL_SIZE);
         this.grid = [];
         this.clear();
+        this.generate();
+        console.log(this.grid);
     }
 
     generate(){
-
+        for (const cell of this.grid) {
+            if (randomInt(0,2) == 1) {
+                cell.resetMask(CellType.WATER);
+            }
+        }
     }
 
     clear(){
-        for (let x = 0; x < WIDTH; x++){
-            for (let y = 0; y < HEIGHT; y++){
-                this.grid.push(new Cell(x,y));
+        for (let x = 0; x < this.cols; x++){
+            for (let y = 0; y < this.rows; y++){
+                this.grid.push(new Cell(x, y, CellType.FLOOR));
             }
         }
     }
