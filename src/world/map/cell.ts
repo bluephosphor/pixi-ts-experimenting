@@ -26,12 +26,14 @@ export class Cell {
     worldX: number;
     worldY: number;
     mask: Graphics;
+    type: CellType;
     color: number;
     constructor(x: number, y: number, type: CellType) {
         this.x = x;
         this.y = y;
         this.worldX = x * CELL_SIZE;
         this.worldY = y * CELL_SIZE;
+        this.type = type;
         this.color = cellTypeToColor(type);
         this.mask = new Graphics();
         this.mask.x = this.worldX;
@@ -45,6 +47,11 @@ export class Cell {
         this.mask.clear();
         this.mask.beginFill(this.color);
         this.mask.drawRect(this.x, this.y, CELL_SIZE, CELL_SIZE);
+    }
+
+    setType(type: CellType){
+        this.type = type;
+        this.resetMask(type);
     }
 
 }

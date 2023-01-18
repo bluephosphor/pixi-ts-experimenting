@@ -6,8 +6,10 @@ export class Player extends Entity {
 
     constructor(x: number, y: number) {
         super(x, y);
-        this.color = 0x00ff00;
         this.magnitude = 5;
+        this.color = 0x00ff00;
+        this.width = 24;
+        this.height = 24;
         this.resetMask();
     }
 
